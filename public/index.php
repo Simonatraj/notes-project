@@ -1,6 +1,8 @@
 <?php
 use core\Router;
 
+session_start();
+
 const BASE_PATH = __DIR__ . '/../';  // with this constant I am located in folder jeffrey-way
 
 require BASE_PATH . 'core/functions.php'; // I am pasting the file functions here
