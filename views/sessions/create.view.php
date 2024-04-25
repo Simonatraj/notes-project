@@ -16,8 +16,13 @@
         <div>
           <label for="email" class="block text-sm font-medium leading-6 text-gray-900">Email address</label>
           <div class="mt-2">
-            <input id="email" name="email" type="email" placeholder="Email address" autocomplete="email" required
-              class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+            <input 
+            id="email" 
+            name="email" 
+            type="email" 
+            class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+            placeholder="Email address" autocomplete="email" required
+            value="<?=old('email') ?>">
           </div>
         </div>
         <?php if (isset($errors['email'])): ?>
@@ -43,10 +48,18 @@
         <?php endif; ?>
         <div>
           <button type="submit"
-            class="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Log In</button>
+            class="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Log
+            In</button>
         </div>
       </form>
-
+      <?php if (isset($errors['exist_account'])): ?>
+        <p class="text-red-500 text-xs mt-2">
+          <?php echo $errors['exist_account'] ?>
+          <a class="font-medium leading-8 text-center text-violet-900" href="/register">
+            . Please register HERE
+          </a>
+        </p>
+      <?php endif; ?>
 
     </div>
   </div>

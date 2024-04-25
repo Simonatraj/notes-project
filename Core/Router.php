@@ -53,7 +53,7 @@ class Router
         foreach ($this->routes as $route) {
             if ($route['uri'] == $uri && $route['method'] == strtoupper($method)) {
                 Middleware::resolve($route['middleware']);
-                return require base_path($route['controller']);
+                return require base_path("Http/controllers".$route['controller']);
             }
         }
 
@@ -71,6 +71,10 @@ class Router
     {
        $this->routes[array_key_last($this->routes)]['middleware']=$key;
        return $this->routes;
+    }
+
+    public function previousUrl(){
+        return $_SERVER['HTTP_REFERER'];
     }
 
 }

@@ -1,5 +1,6 @@
 <?php
 
+use Core\Authenticator;
 use Core\Validator;
 use Core\App;
 use Core\Database;
@@ -21,8 +22,9 @@ if(! empty($errors)){
  return view('registration/create.view.php', ['errors'=> $errors]);
 }
 
-$db=App::resolve(Database::class);
-$user=$db->query('select * from users where email=:email',[
+$db = App::resolve(Database::class);
+
+$user= $db->query('select * from users where email=:email',[
     'email'=> $email
 ])->find();
 
@@ -36,8 +38,9 @@ else{
         'password' => password_hash($password, PASSWORD_BCRYPT)
     ]);
 }
+(new Authenticator)->login($user);
 
-login($user);
+
 
 header('location: /');
 
